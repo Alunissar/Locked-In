@@ -1,0 +1,7 @@
+[gd_resource type="FontVariation" format=3 uid="uid://d2x7cmqq8t273"]
+
+[ext_resource type="FontFile" uid="uid://c2580fnrlr562" path="res://UI/Ink-Free.ttf" id="1_p5tis"]
+
+[resource]
+base_font = ExtResource("1_p5tis")
+variation_embolden = 1.5
