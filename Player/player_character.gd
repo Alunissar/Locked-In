@@ -92,10 +92,12 @@ func move_to(pos: Vector2i) -> void:
 	
 	match tile:
 		"ground":
+			if((grid_pos - pos).length() == 1):Global.spawn_path(grid_pos,pos)
 			grid_pos = pos
 			global_position = GameManager.grid_to_global(grid_pos)
 			pass
 		"wall":
+			Global.spawn_cross(pos)
 			pass
 		"gate":
 			if KEY > 0:
@@ -103,6 +105,7 @@ func move_to(pos: Vector2i) -> void:
 				actions.append(ChangeTile.new(pos,12))
 				actions.append(AddStat.new(0,0,0,0,-1))
 				CommandStack.make_command(actions, grid_pos, pos)
+			else: Global.spawn_cross(pos)
 			pass
 		"item":
 			var item = GameManager.currentLevel.get_item_at(pos)
@@ -111,6 +114,7 @@ func move_to(pos: Vector2i) -> void:
 				actions.append(ChangeItem.new(pos,-1))
 				CommandStack.make_command(actions, grid_pos, pos)
 				pass
+			else:	Global.spawn_cross(pos)
 			pass
 		"1sgate":
 			if STAR >= 1:
@@ -118,6 +122,7 @@ func move_to(pos: Vector2i) -> void:
 				actions.append(ChangeTile.new(pos,14))
 				actions.append(AddStat.new(0,0,0,0,0,-1))
 				CommandStack.make_command(actions, grid_pos, pos)
+			else:	Global.spawn_cross(pos)
 			pass
 		"5sgate":
 			if STAR >= 5:
@@ -125,6 +130,7 @@ func move_to(pos: Vector2i) -> void:
 				actions.append(ChangeTile.new(pos,14))
 				actions.append(AddStat.new(0,0,0,0,0,-5))
 				CommandStack.make_command(actions, grid_pos, pos)
+			else:	Global.spawn_cross(pos)
 			pass
 		"25sgate":
 			if STAR >= 25:
@@ -132,6 +138,7 @@ func move_to(pos: Vector2i) -> void:
 				actions.append(ChangeTile.new(pos,14))
 				actions.append(AddStat.new(0,0,0,0,0,-25))
 				CommandStack.make_command(actions, grid_pos, pos)
+			else:	Global.spawn_cross(pos)
 			pass
 		"UPstairs":
 			grid_pos = pos

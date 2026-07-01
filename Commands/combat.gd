@@ -24,7 +24,6 @@ func _init(lvl:int, hp:int, dexmult:float, clvmult:float, tecmult:float) -> void
 	_dex_mult = dexmult
 	_clv_mult = clvmult
 	_tec_mult = tecmult
-	
 
 func forward():
 	var calc = calc_combat_results()

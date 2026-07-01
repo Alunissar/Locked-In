@@ -17,7 +17,6 @@ func _init(hp:int, dex:int, clv:int, tec:int, key:int = 0, star:int = 0) -> void
 	_star = star
 	pass
 
-
 func forward():
 	GameManager.PCInstance.gain_health(_hp)
 	GameManager.PCInstance.gain_dex(_dex)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7isgv7io2wpb"
-path="res://.godot/imported/Numers.png-57c4d5ac6462e2baa67666b111b7b758.ctex"
+uid="uid://b7qedayop2kex"
+path="res://.godot/imported/PathSprite.png-eff964dd76e216d914b9493d105a0d0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Numers.png"
-dest_files=["res://.godot/imported/Numers.png-57c4d5ac6462e2baa67666b111b7b758.ctex"]
+source_file="res://PathSprite.png"
+dest_files=["res://.godot/imported/PathSprite.png-eff964dd76e216d914b9493d105a0d0b.ctex"]
 
 [params]
 

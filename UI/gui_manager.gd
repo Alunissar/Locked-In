@@ -17,9 +17,21 @@ class_name GUIManager
 
 func _ready() -> void:
 	GameManager.PCInstance.connect("gained_health", func(_x):energy.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.HP))))
-	GameManager.PCInstance.connect("gained_dex", func(_x):dex.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_dex()))))
-	GameManager.PCInstance.connect("gained_clv", func(_x):clv.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_clv()))))
-	GameManager.PCInstance.connect("gained_tec", func(_x):tec.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_tec()))))
+	GameManager.PCInstance.connect("gained_dex", func(_x):dex.text_set(
+		Global.insert_group_splitters(str(GameManager.PCInstance.eff_dex())
+		+"("
+		+Global.insert_group_splitters(str(GameManager.PCInstance.DEX))
+		+")")))
+	GameManager.PCInstance.connect("gained_clv", func(_x):clv.text_set(
+		Global.insert_group_splitters(str(GameManager.PCInstance.eff_clv())
+		+"("
+		+Global.insert_group_splitters(str(GameManager.PCInstance.CLV))
+		+")")))
+	GameManager.PCInstance.connect("gained_tec", func(_x):tec.text_set(
+		Global.insert_group_splitters(str(GameManager.PCInstance.eff_tec())
+	+"("
+	+Global.insert_group_splitters(str(GameManager.PCInstance.TEC))
+	+")")))
 	GameManager.PCInstance.connect("gained_key", func(_x):key_count.text_set(str(GameManager.PCInstance.KEY)))
 	GameManager.PCInstance.connect("gained_star", func(_x):stars.text_set(str(GameManager.PCInstance.STAR)))
 	GameManager.change_floor.connect(change_floor_name)
@@ -36,9 +48,19 @@ func _ready() -> void:
 
 func update_all() -> void:
 	energy.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.HP)))
-	dex.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_dex())))
-	clv.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_clv())))
-	tec.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_tec())))
+	dex.text_set(Global.insert_group_splitters(str(
+		GameManager.PCInstance.eff_dex())
+		+"("
+		+Global.insert_group_splitters(str(GameManager.PCInstance.DEX))
+		+")"))
+	clv.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_clv())
+		+"("
+		+Global.insert_group_splitters(str(GameManager.PCInstance.CLV))
+		+")"))
+	tec.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_tec())
+		+"("
+		+Global.insert_group_splitters(str(GameManager.PCInstance.TEC))
+		+")"))
 	key_count.text_set(str(GameManager.PCInstance.KEY))
 	stars.text_set(str(GameManager.PCInstance.STAR))
 	dex_mult.text_set(str(int(100*float(GameManager.PCInstance.eff_dex()) / GameManager.PCInstance.DEX)) + "%")
@@ -54,9 +76,18 @@ func change_hover_text(pos:Vector2i):
 	dex_mult.text_set(str(GameManager.PCInstance.final_mult()) + "%")
 	clv_mult.text_set(str(GameManager.PCInstance.final_mult()) + "%")
 	tec_mult.text_set(str(GameManager.PCInstance.final_mult()) + "%")
-	dex.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_dex())))
-	clv.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_clv())))
-	tec.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_tec())))
+	dex.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_dex()))
+		+"("
+		+Global.insert_group_splitters(str(GameManager.PCInstance.DEX))
+		+")")
+	clv.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_clv()))
+		+"("
+		+Global.insert_group_splitters(str(GameManager.PCInstance.CLV))
+		+")")
+	tec.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_tec()))
+		+"("
+		+Global.insert_group_splitters(str(GameManager.PCInstance.TEC))
+		+")")
 	match tile:
 		"item":
 			var item = GameManager.currentLevel.get_item_at(pos)
@@ -67,9 +98,18 @@ func change_hover_text(pos:Vector2i):
 				dex_mult.text_set(str(GameManager.PCInstance.final_mult(actions[0]._dex_mult)) + "%")
 				clv_mult.text_set(str(GameManager.PCInstance.final_mult(actions[0]._clv_mult)) + "%")
 				tec_mult.text_set(str(GameManager.PCInstance.final_mult(actions[0]._tec_mult)) + "%")
-				dex.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_dex(actions[0]._dex_mult))))
-				clv.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_clv(actions[0]._clv_mult))))
-				tec.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_tec(actions[0]._tec_mult))))
+				dex.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_dex(actions[0]._dex_mult)))
+					+"("
+					+Global.insert_group_splitters(str(GameManager.PCInstance.DEX))
+					+")")
+				clv.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_clv(actions[0]._clv_mult)))
+					+"("
+					+Global.insert_group_splitters(str(GameManager.PCInstance.CLV))
+					+")")
+				tec.text_set(Global.insert_group_splitters(str(GameManager.PCInstance.eff_tec(actions[0]._tec_mult)))
+					+"("
+					+Global.insert_group_splitters(str(GameManager.PCInstance.TEC))
+					+")")
 		"gate":
 			hover_name.text_set("Gate")
 			hover_description.text = "Needs a key to open."

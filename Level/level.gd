@@ -60,18 +60,54 @@ func set_floor(value:int):
 	
 	update_astar()
 
+func get_current_floor() -> Floor:
+	return floors[current_floor]
+
 func update_astar():
 	astar_grid.update()
 	for tile in floors[current_floor].ground.get_used_cells():
+		
 		var data =  floors[current_floor].ground.get_cell_tile_data(tile)
 		if data and data.get_custom_data("obstacle"):
 			astar_grid.set_point_solid(tile)
 		else:
 			astar_grid.set_point_solid(tile, false)
+			
+		if data and data.get_custom_data("item"):
+			astar_grid.set_point_weight_scale(tile,100)
+		else:
+			astar_grid.set_point_weight_scale(tile,1)
 		
 		data =  floors[current_floor]._items.get_cell_tile_data(tile)
-		if data and data.get_custom_data("obstacle"):
-			astar_grid.set_point_solid(tile)
+		if data and data.get_custom_data("item"):
+			astar_grid.set_point_weight_scale(tile,100)
+		else:
+			astar_grid.set_point_weight_scale(tile,1)
 
 func can_pathfind(pos1:Vector2i, pos2:Vector2i) -> bool:
-	return astar_grid.get_id_path(pos1,pos2,false).size() > 0
+	var path = astar_grid.get_id_path(pos1,pos2,false)
+	if(path.size()>0):
+		for i in range(path.size()-1):
+			
+			# check items
+			var data =  floors[current_floor]._items.get_cell_tile_data(path[i])
+			if data and data.get_custom_data("item"):
+				print("item item")
+				Global.spawn_cross(path[i])
+				return false
+			
+			# check ground
+			data =  floors[current_floor].ground.get_cell_tile_data(path[i])
+			if data and data.get_custom_data("item"):
+				print("ground item")
+				var cross = Sprite2D.new()
+				Global.spawn_cross(path[i])
+				return false
+			
+			# sprite path
+			Global.spawn_path(path[i], path[i+1])
+		return true
+	
+	Global.spawn_cross(pos2)
+	
+	return false

@@ -5,9 +5,9 @@ class_name Floor
 @export var _items:TileMapLayer
 @export var powers:TileMapLayer
 
-func _ready() -> void:
-	powers.visible = false
-	InputManager.toggle_numbers.connect(func(_x): powers.visible = _x)
+#func _ready() -> void:
+	#powers.visible = false
+	#InputManager.toggle_numbers.connect(func(_x): powers.visible = _x)
 
 func get_tile_at(pos:Vector2i) -> Variant:
 	if(_items.get_cell_atlas_coords(pos) != Vector2i(-1,-1)):

@@ -3,7 +3,7 @@ extends Node
 signal hover_changed(Vector2i)
 var hovered_coord:Vector2i
 
-signal toggle_numbers(bool)
+#signal toggle_numbers(bool)
 
 func _input(event) -> void:
 	if event.is_action_pressed("in_down"):
@@ -18,10 +18,10 @@ func _input(event) -> void:
 		CommandStack.undo()
 	if event.is_action_pressed("in_redo"):
 		CommandStack.redo()
-	if event.is_action_pressed("in_tab"):
-		toggle_numbers.emit(true)
-	if event.is_action_released("in_tab"):
-		toggle_numbers.emit(false)
+	#if event.is_action_pressed("in_tab"):
+	#	toggle_numbers.emit(true)
+	#if event.is_action_released("in_tab"):
+	#	toggle_numbers.emit(false)
 	
 	if event is InputEventMouseMotion:
 		var grid_pos = GameManager.global_to_grid(event.global_position)

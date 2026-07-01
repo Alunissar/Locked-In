@@ -1,7 +1,7 @@
 extends Node
 class_name Item
 
-const hp_values = [1000, 3000, 5000, 7000, 10000, 13000, 16000, 20000, 25000, 30000, 40000, 50000, 60000, 70000, 80000]
+const hp_values = [1000, 2000, 3000, 4000, 6000, 8000, 10000, 12000, 14000, 18000, 22000, 26000, 30000, 34000, 38000]
 
 static func interact(id:int, lvl:int) -> Array[Action]:
 	match id:
@@ -13,7 +13,7 @@ static func interact(id:int, lvl:int) -> Array[Action]:
 			if(lvl<=4): star = 1
 			elif lvl <= 9: star = 5
 			else: star = 25
-			out.append(AddStat.new(0,0,0,1,0,star))
+			out.append(AddStat.new(0,0,0,0,0,star))
 			return out
 		1:
 			# clv job
@@ -198,7 +198,7 @@ static func item_description(id:int, lvl:int) -> String:
 			if(lvl<=4): star = "a star."
 			elif lvl <= 9: star = "a silver(5) star."
 			else: star = "a BIG(25) star."
-			return "Tech-based. Gives 1 tech skill and "+ str(star) +" Will spend " + str(calc.damage) + " energy in " + str(calc.turns) + " turns. " + str(calc.TRT) + " effective skill to reduce turns."
+			return "Tech-based. Gives "+ str(star) +" Will spend " + str(calc.damage) + " energy in " + str(calc.turns) + " turns. " + str(calc.TRT) + " effective skill to reduce turns."
 		1:
 			# clv job
 			var combat = Combat.new(lvl, hp_values[lvl],0.5, 2.0, 0.5)
